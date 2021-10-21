@@ -1,8 +1,8 @@
 package pl.akai;
 
 public class Stat {
-    String author;
-    double rating;
+    private String author;
+    private double rating;
 
 
     public Stat(String author, double rating) {
@@ -28,9 +28,9 @@ public class Stat {
 
     @Override
     public String toString() {
-        return "Stat{" +
+        return
                 "author='" + author + '\'' +
-                ", rating=" + rating +
-                '}';
+                ", rating=" + rating;
+
     }
 }

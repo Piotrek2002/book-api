@@ -41,7 +41,6 @@ public class Main {
 
     public static void main(String[] args) {
         List<Book> books = getBooksFromJson("https://akai-recruitment.herokuapp.com/book");
-
         books = sortBookByAuthor(books);
         List<Stat> stats =makeStats(books);
 
@@ -93,15 +92,25 @@ public class Main {
                 author = book.getAuthor();
             }
         }
+        stats.add(new Stat(author,sum/count));
         return stats;
     }
     public static void printThreeAuthorWithHighestRating(List<Stat> stats){
         Optional<Stat> stat1 = stats.stream().max(Comparator.comparing(Stat::getRating));
         stats.remove(stat1.get());
+        System.out.println(stat1.get());
         Optional<Stat> stat2 = stats.stream().max(Comparator.comparing(Stat::getRating));
         stats.remove(stat2.get());
+        System.out.println(stat2.get());
         Optional<Stat> stat3 = stats.stream().max(Comparator.comparing(Stat::getRating));
-        
+
+        double maxRating=stat3.get().getRating();
+        while (maxRating==stat3.get().getRating()){
+            System.out.println(stat3.get());
+            stats.remove(stat3.get());
+            stat3=stats.stream().max(Comparator.comparing(Stat::getRating));
+
+        }
     }
 
 }
